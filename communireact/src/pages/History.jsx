@@ -8,7 +8,7 @@ const History = () => {
     // Fetch email history data from your backend API
     const fetchEmailHistory = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/history"); // Replace with your actual API endpoint
+        const response = await axios.get(`${import.meta.env.VITE_API}/history`); 
         setEmailHistory(response.data);
       } catch (error) {
         console.error('Error fetching email history:', error);

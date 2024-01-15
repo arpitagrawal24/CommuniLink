@@ -11,7 +11,7 @@ const Nabar = () => {
     const getUser = async () => {
 
         try {
-            const response = await axios.get("http://localhost:3000/login/success", { withCredentials: true });
+            const response = await axios.get(`${import.meta.env.VITE_API}/login/success`, { withCredentials: true });
 
             setUser(response.data.user);
         } catch (error) {
@@ -25,7 +25,7 @@ const Nabar = () => {
 
 
     const logout = () => {
-        window.open("http://localhost:3000/logout", "_self")
+        window.open("https://communilink.onrender.com/logout", "_self")
     }
 
     return (

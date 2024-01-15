@@ -2,7 +2,7 @@
 const Login = () => {
   const loginWithGoogle = () => {
     console.log('login with Google');
-    window.open('http://localhost:3000/auth/google', '_self');
+    window.open(`${import.meta.env.VITE_API}/auth/google`, '_self');
   };
 
   return (

@@ -8,7 +8,7 @@ const Dashboard = () => {
 
   const getUser = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/login/success", { withCredentials: true });
+      const response = await axios.get(`${import.meta.env.VITE_API}/login/success`, { withCredentials: true });
       setUser(response.data.user);
     } catch (error) {
       navigate("*");

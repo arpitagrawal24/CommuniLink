@@ -10,14 +10,9 @@ const passport = require("passport");
 const OAuth2Strategy = require("passport-google-oauth2").Strategy;
 const userdb = require("./model/userSchema");
 const PORT = process.env.PORT || 3000;
+const clienturl = process.env.CLIENT_URL;
 
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    methods: "GET,POST,PUT,DELETE",
-    credentials: true,
-  })
-);
+app.use(cors());
 app.use(express.json());
 
 // setup session
@@ -72,6 +67,10 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
+app.get("/", (req, res) => {
+  res.send("hello communilink");
+});
+
 // initial google ouath login
 app.get(
   "/auth/google",
@@ -81,8 +80,8 @@ app.get(
 app.get(
   "/auth/google/callback",
   passport.authenticate("google", {
-    successRedirect: "http://localhost:5173/dashboard",
-    failureRedirect: "http://localhost:5173/login",
+    successRedirect: `${clienturl}/dashboard`,
+    failureRedirect: `${clienturl}/login`,
   })
 );
 
@@ -99,7 +98,7 @@ app.get("/logout", (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.redirect("http://localhost:5173");
+    res.redirect(`${clienturl}`);
   });
 });
 
